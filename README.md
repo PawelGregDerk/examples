@@ -1,1 +1,1 @@
-First Spring JDBC CRUD example
+Spring examples for chinese students
