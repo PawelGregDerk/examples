@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/htmlhead.html :: common_header(title='Update person')"/>
+</head>
+<body>
+<h2>Edit Person</h2>
+<form th:action="@{/update.html/{id}(id=${person.id})}" method="post" th:object="${person}">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" th:value="${person.name}" required/>
+    </div>
+    <div class="form-group">
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" class="form-control" name="birthday" th:value="${person.birthday}" required/>
+    </div>
+    <div class="button">
+        <button class="btn btn-secondary" type="submit">Submit</button>
+    </div>
+</form>
+<div class="button">
+    <a class="btn btn-secondary" href="list.html" th:href="@{/people.html}">Back</a>
+</div>
+</body>
+</html>

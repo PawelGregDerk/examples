@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/htmlhead.html :: common_header(title='Hello, people')"/>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+</head>
+
+<body>
+<span th:if="${#lists.isEmpty(personList)}">
+    <h2>The people list is empty!</h2>
+</span>
+<span th:unless="${#lists.isEmpty(personList)}">
+    <h2>People List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Birthday</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${personList}">
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.birthday}"></td>
+            <td><a class="link-primary link-success link-opacity-50-hover link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                   href="#" th:href="@{/edit.html/{id}(id=${person.id})}">Edit</a></td>
+            <td><a class="link-primary link-danger link-opacity-50-hover link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                   href="#" th:href="@{/delete.html/{id}(id=${person.id})}" onclick="return shure();">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <p>Total number of people: <span th:text="${personList.size()}"></span></p>
+</span>
+
+<div class="button">
+    <a class="btn btn-secondary" href="list.html" th:href="@{/add.html}">Add person</a>
+</div>
+</body>
+</html>
